@@ -5,47 +5,34 @@ Oversample::Oversample(byte pin, byte resolution)
   _pin = pin;
 
   pinMode(_pin, INPUT);
-  setPrescaler(4);
+  setPrescaler(_prescaler);
   setResolution(resolution);
 }
 
 double Oversample::read()
 {
-  int scaled = readScaled();
+  unsigned long scaled = readScaled();
   double averaged = (scaled * 1.0) / (B00000001 << _additionalBits);
   return averaged;
 }
 
-long Oversample::readScaled()
+unsigned long Oversample::readScaled()
 {
-  /* Do all the measurements as quickly as possible. */
-  for(int i = 0; i < _sampleCount; i++) {
-    _samples[i] = analogRead(_pin);
-  }
-
   /* Sum all measurements. */
-  long total = 0;
-
+  unsigned long total = 0UL;
   for(int i = 0; i < _sampleCount; i++) {
-    total += _samples[i];
+    total += analogRead(_pin);
   }
 
   /* Scale by right shifting. */
-  long scaled = total >> _additionalBits;
-  return scaled;
+  return total >> _additionalBits;
 }
 
 void Oversample::setResolution(byte resolution)
 {
   _resolution = sanitizeResolution(resolution);
-  _additionalBits = _resolution - 10;
+  _additionalBits = _resolution - _baseResolution;
   _sampleCount = B00000001 << (_additionalBits * 2);
-
-  if(_samples != 0) {
-    delete [] _samples;
-  }
-
-  _samples = new int [_sampleCount];
 }
 
 byte Oversample::getResolution()
@@ -55,9 +42,10 @@ byte Oversample::getResolution()
 
 void Oversample::setPrescaler(byte prescaler)
 {
+  _prescaler = prescaler;
   byte mask = B11111000;
   ADCSRA &= mask;
-  ADCSRA |= prescaler;
+  ADCSRA |= _prescaler;
 }
 
 byte Oversample::getPrescaler()

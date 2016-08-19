@@ -16,7 +16,7 @@ class Oversample
     double read();
 
     /* Returns the scaled sum of the measurements. */
-    long readScaled();
+    unsigned long readScaled();
 
     void setResolution(byte resolution);
     byte getResolution();
@@ -35,12 +35,12 @@ class Oversample
     byte getPrescaler();
 
   private:
-    byte _pin;
+    byte _pin = 0;
     byte _prescaler = 4;
     byte _resolution = 10;
     byte _baseResolution = 10;
-    byte _additionalBits;
-    int _sampleCount;
+    byte _additionalBits = 0;
+    int _sampleCount = 0;
     int * _samples = 0;
 
     byte sanitizeResolution(byte resolution);
