@@ -8,7 +8,7 @@ Oversampling means, sampling a signal over its [Nyquist frequency](https://en.wi
 
 Sampling above
 
-    **f***nyquist* > 2 * **f***signal*
+> **f***nyquist* > 2 * **f***signal*
 
 is called oversampling.
 
