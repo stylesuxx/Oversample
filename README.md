@@ -101,6 +101,11 @@ You can note multiple things in this diagram:
 * 16 Bit is way smoother than the 10 Bit measurement
 * The spikes of the 16 Bit measurement are smaller and come slightly after the spikes of the 10 Bit measurements, this is due to the fact, that the measurements happen after one another, and the oversampled one takes longer.
 
+The next graph shows the full spectrum of the measurements, one can see that the 16Bit graph is way smoother.
+
+![Full](examples/OversampleTest/full.png)
+
+So I would consider oversampling a full success, although I would really like to see test results with native 12Bit, and 16Bit ADC's, maybe a test setup using one Arduino per ADC, Another one to sync the measurements and collect the data.
 
 ## References
  * [Oversampling - Note AVR121](http://www.atmel.com/images/doc8003.pdf)
