@@ -4,8 +4,9 @@ This library implements "ENhancing ADC rewsolutino by oversampling" as per [Note
 For detail information please refer to the application note mentioned above, I will describe here briefly what it says.
 
 ## Theory of operation
-Oversampling means, sampling a signal over its [Nyquist frequency](https://en.wikipedia.org/wiki/Nyquist_frequency). The Nyquist frequency is twice the highest frequency of interest in the input signal.
-Sampling above **fnyquist > 2 * fsignal** is called oversampling.
+Oversampling means, sampling a signal over its [Nyquist frequency](https://en.wikipedia.org/wiki/Nyquist_frequency). The Nyquist frequency is at least twice the bandwidth of the input signal.
+
+Sampling above **f***nyquist* > 2 * **f***signal* is called oversampling.
 For each additional Bit of resolution *n*, the signal must be oversampled four times.
 So the oversampling frequency is **foversampling = 4^n * fnyquist**.
 
@@ -28,18 +29,18 @@ So in total we will collect 4 samples to achieve 11Bit of resolution.
 
 Lets assume our collected samples look like this:
 
-    00000001
-    00000010
-    00000010
-    00000001
+    0001
+    0010
+    0010
+    0001
 
 All samples are added up to one integer.
 
-    00000110
+    0110
 
 The result is now scaled by shifting it to the right by n(1):
 
-    00000011
+    0011
 
 The value is now divided by **2^n** and stored as float:
 
