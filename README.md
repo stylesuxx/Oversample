@@ -1,10 +1,10 @@
 # Arduino ADC Oversampling
 This library implements "ENhancing ADC rewsolutino by oversampling" as per [Note AVR121](http://www.atmel.com/images/doc8003.pdf).
 
-For detail information please refer to the paper mentioned above.
+For detail information please refer to the application note mentioned above, I will describe here briefly what it says.
 
 ## Theory of operation
-Oversampling means, sampling a signal over its Nyquist Frequency. The Nyquist freuqency is twice the highest frequency of interest in the input signal.
+Oversampling means, sampling a signal over its Nyquist Frequency. The Nyquist frequency is twice the highest frequency of interest in the input signal.
 Sampling above **fnyquist > 2 * fsignal** is called oversampling.
 For each additional Bit of resolution *n*, the signal must be oversampled four times.
 So the oversampling frequency is **foversampling = 4^n * fnyquist**.
@@ -50,10 +50,11 @@ This is the value you obtain through a call to read().
 ## Usage
 Simply clone this repository to your library folder. This repository also contains an example which should show up in your Arduino IDE.
 
-    // Oversample * sampler = new Oversample(analogPin, resolution);
-    Oversample * sampler = new Oversample(A0, 16);
-    double oversampled = sampler->read();
-
+```Arduino
+// Oversample * sampler = new Oversample(analogPin, resolution);
+Oversample * sampler = new Oversample(A0, 16);
+double oversampled = sampler->read();
+```
 The library provides getters and setters for resolution and prescaler. Please see the example on how to use them.
 
 ## Does it work?
