@@ -4,7 +4,7 @@ This library implements "ENhancing ADC rewsolutino by oversampling" as per [Note
 For detail information please refer to the application note mentioned above, I will describe here briefly what it says.
 
 ## Theory of operation
-Oversampling means, sampling a signal over its Nyquist Frequency. The Nyquist frequency is twice the highest frequency of interest in the input signal.
+Oversampling means, sampling a signal over its [Nyquist frequency](https://en.wikipedia.org/wiki/Nyquist_frequency). The Nyquist frequency is twice the highest frequency of interest in the input signal.
 Sampling above **fnyquist > 2 * fsignal** is called oversampling.
 For each additional Bit of resolution *n*, the signal must be oversampled four times.
 So the oversampling frequency is **foversampling = 4^n * fnyquist**.
@@ -61,3 +61,9 @@ The library provides getters and setters for resolution and prescaler. Please se
 The first time I heard about it, it sounded a bit like magic, so I thought the only way for sure is to try it and compare. I would like to compare it to a **real** 12 and 16 Bit ADC, unfortunately I do not have any on hand at the moment and will aquire them with my next electronics order to provide proper comparison.
 
 In the mean time I cam up with the following test setup to at least see how it compares to regular analog reads.
+
+
+## References
+ * [Oversampling - Note AVR121](http://www.atmel.com/images/doc8003.pdf)
+ * [Calibration of the ADC - Note120 ](https://www.element14.com/community/docs/DOC-30916/l/atmel-avr120-application-note-for-characterization-and-calibration-of-the-adc-on-an-avr)
+ * [ATmega Datasheet](http://www.atmel.com/images/Atmel-8271-8-bit-AVR-Microcontroller-ATmega48A-48PA-88A-88PA-168A-168PA-328-328P_datasheet_Complete.pdf)
