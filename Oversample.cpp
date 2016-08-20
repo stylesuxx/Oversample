@@ -12,8 +12,8 @@ Oversample::Oversample(byte pin, byte resolution)
 double Oversample::read()
 {
   unsigned long scaled = readDecimated();
-  double averaged = (scaled * 1.0) / (B00000001 << _additionalBits);
-  return averaged;
+  double proportional = (scaled * 1.0) / (B00000001 << _additionalBits);
+  return proportional;
 }
 
 unsigned long Oversample::readDecimated()
@@ -24,7 +24,7 @@ unsigned long Oversample::readDecimated()
     total += analogRead(_pin);
   }
 
-  /* Scale by right shifting. */
+  /* Decimate by right shifting. */
   return total >> _additionalBits;
 }
 
