@@ -28,6 +28,8 @@ Some criteria must be fullfilled in order for oversampling to work properly:
 
 Usually enough noise will be available for this method to work properly, though it might be introduced artificially.
 
+After all the samples are collected, they need to be decimated. This is done by bit shifting the summed result to the right by **n** Bits.
+
 ## Implementation
 Atmega allows a prescaler to be set for the ADC. By **default** it is set to **128**.
 So with a clock of 16MHz, the ADC operates with
@@ -40,7 +42,7 @@ As per datasheet is is safe to set the prescaler as low as **16**, allowing us t
 
 This is one of the first thing done, when you create a new *Oversample* object. This will now apply to **all your analog measurements**.
 
-The ADC provides us with 10Bit resolution. So to get 11Bit resolution we need to oversample by:
+The ADC provides us with 10 Bit resolution. So to get 11 Bit resolution we need to oversample by:
 
 > 4^n, n= 11 - 10 = 1 => 4 samples.
 

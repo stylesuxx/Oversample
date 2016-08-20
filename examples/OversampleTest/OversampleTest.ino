@@ -22,7 +22,7 @@ void setup() {
 
 void loop() {
   double oversampled = sampler->read();
-  long scaled = sampler->readScaled();
+  long scaled = sampler->readDecimated();
   int single = analogRead(analogPin);
 
   Serial.print(single);

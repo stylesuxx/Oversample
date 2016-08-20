@@ -11,12 +11,12 @@ Oversample::Oversample(byte pin, byte resolution)
 
 double Oversample::read()
 {
-  unsigned long scaled = readScaled();
+  unsigned long scaled = readDecimated();
   double averaged = (scaled * 1.0) / (B00000001 << _additionalBits);
   return averaged;
 }
 
-unsigned long Oversample::readScaled()
+unsigned long Oversample::readDecimated()
 {
   /* Sum all measurements. */
   unsigned long total = 0UL;

@@ -29,7 +29,7 @@ class Oversample
      *
      * @return The oversampled, non decimated measurement.
      */
-    unsigned long readScaled();
+    unsigned long readDecimated();
 
     /**
      * Set measurment resolution.
