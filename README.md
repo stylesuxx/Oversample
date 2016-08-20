@@ -12,8 +12,13 @@ Sampling above
 
 is called oversampling.
 
-For each additional Bit of resolution *n*, the signal must be oversampled four times.
-So the oversampling frequency is **foversampling = 4^n * fnyquist**.
+For each additional Bit of resolution **n**, the signal must be **oversampled four times**:
+
+> 4^n
+
+So the oversampling frequency is
+
+> **f***oversampling* = 4^n * **f***nyquist*
 
 Some criteria must be fullfilled in order for oversampling to work properly:
 
@@ -25,8 +30,15 @@ Usually enough noise will be available for this method to work properly, though 
 
 ## Implementation
 Atmega allows a prescaler to be set for the ADC. By default it is set to 128.
-So with a clock of 16MHz, the ADC operates with **16,000,000Hz / 128 = 125,000Hz = 125kHz**.
-As per datasheet is is safe to set the prescaler as low as *16*, allowing us to clock the ADC with **16,000,000Hz / 16 = 1,000,000Hz = 1MHz**. This is one of the first thin done, when you create a new Oversampler object. This will now apply to **all your analog measurements**.
+So with a clock of 16MHz, the ADC operates with
+
+> 16,000,000Hz / 128 = 125,000Hz = **125kHz**.
+
+As per datasheet is is safe to set the prescaler as low as *16*, allowing us to clock the ADC with
+
+> 16,000,000Hz / 16 = 1,000,000Hz = **1MHz**
+
+This is one of the first thin done, when you create a new Oversampler object. This will now apply to **all your analog measurements**.
 
 The ADC provides us with 10Bit resolution. So to get 11Bit resolution we need to oversample by 4^n, n= 11 - 10 = 1 => 4 samples.
 
