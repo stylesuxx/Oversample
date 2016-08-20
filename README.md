@@ -94,7 +94,7 @@ This measurement is done every second and is captured to a file.
 
 The following image is a one minute time span of the signal, it shows the 10Bit, normal read, and the 16 Bit decimated read:
 
-![60 seconds](examples/OversampleTest/60sec.png)
+![60 seconds](extras/OversampleTest/60sec.png)
 
 You can note multiple things in this diagram:
 
@@ -103,7 +103,7 @@ You can note multiple things in this diagram:
 
 The next graph shows the full spectrum of the measurements, one can see that the 16Bit graph is way smoother.
 
-![Full](examples/OversampleTest/full.png)
+![Full](extras/OversampleTest/full.png)
 
 So I would consider oversampling a full success, although I would really like to see test results with native 12Bit, and 16Bit ADC's, maybe a test setup using one Arduino per ADC, Another one to sync the measurements and collect the data.
 
