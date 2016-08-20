@@ -63,7 +63,7 @@ The result is now **scaled by shifting** it to the right by **n** bits, since we
 
     0011
 
-The value is now divided by **2^n**:
+The value is now divided by **2^n** to get the proportional value of the decimated value:
 
      3/2^1 = 1.5
 
