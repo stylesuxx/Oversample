@@ -6,7 +6,12 @@ For detail information please refer to the application note mentioned above, I w
 ## Theory of operation
 Oversampling means, sampling a signal over its [Nyquist frequency](https://en.wikipedia.org/wiki/Nyquist_frequency). The Nyquist frequency is at least twice the bandwidth of the input signal.
 
-Sampling above **f***nyquist* > 2 * **f***signal* is called oversampling.
+Sampling above
+
+    **f***nyquist* > 2 * **f***signal*
+
+is called oversampling.
+
 For each additional Bit of resolution *n*, the signal must be oversampled four times.
 So the oversampling frequency is **foversampling = 4^n * fnyquist**.
 
