@@ -88,9 +88,9 @@ I built a simple circuit with a coin cell and two LED's discharging it. Then I r
 
 The test program does one *normal* analog read, then it does the oversampled read. The normal, proportinal oversampled and decimated value are printed to Serial.
 
-This measurement is done every second and may be captured to a file.
+This measurement is done every second and is captured to a file.
 
-**16_bit_discharge.csv** is such a file. This can now be inspected with gnuplot, or some other plotting software.
+**16_bit_discharge.csv** is such a file. This can now be inspected with [gnuplot](http://www.gnuplot.info/), or some other plotting software.
 
 The following image is a one minute time span of the signal, it shows the 10Bit, normal read, and the 16 Bit decimated read:
 
