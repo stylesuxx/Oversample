@@ -1,4 +1,4 @@
-#include "oversample.h"
+#include "Oversample.h"
 
 Oversample::Oversample(byte pin, byte resolution)
 {
