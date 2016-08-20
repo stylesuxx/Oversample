@@ -55,12 +55,12 @@ byte Oversample::getPrescaler()
 
 byte Oversample::sanitizeResolution(byte resolution)
 {
-  if(resolution > 16) {
-    resolution = 16;
+  if(resolution > _maxResolution) {
+    resolution = _maxResolution;
   }
 
-  else if(resolution < 10) {
-    resolution = 10;
+  else if(resolution < _baseResolution) {
+    resolution = _baseResolution;
   }
 
   return resolution;
