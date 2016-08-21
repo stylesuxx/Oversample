@@ -113,16 +113,19 @@ Those diagrams concolude the following:
 * The spikes of the 16 Bit measurement are smaller and come slightly after the spikes of the 10 Bit measurements, this is due to the fact, that the measurements happen after one another, and the oversampled one takes longer.
 * A lower prescaler causes bigger variance in analog reads.
 
-The next graphs shows the full spectrum of the measurements, one can see that the 16Bit graph is way smoother.
+The next graphs show 30, and 60 minutes of the measurements.
 
 ![30min @ 125kHz, internal reference](extras/OversampleTest/16_128-30min.png)
 > 30min @ 125kHz, internal reference
 
+![30min @ 1Mhz, internal reference](extras/OversampleTest/16_16-30min.png)
+> 30min @ 1Mhz, internal reference
+
 ![60min @ 125kHz, internal reference](extras/OversampleTest/16_128-60min.png)
 > 60min @ 125kHz, internal reference
 
-![Full](extras/OversampleTest/16_16-full.png)
-> about 30mins @ 1Mhz, internal reference
+![60min @ 1Mhz, internal reference](extras/OversampleTest/16_16-60min.png)
+> 60min @ 1Mhz, internal reference
 
 So I would consider oversampling a full success, although I would really like to see test results with native 12Bit, and 16Bit ADC's, maybe a test setup using one Arduino per ADC, Another one to sync the measurements and collect the data.
 
