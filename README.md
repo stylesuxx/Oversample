@@ -99,16 +99,19 @@ In the extras directory you can find multiple such files:
 * *16_128.csv*: Battery discharge 16 Bit resolution with a prescaler of 128
 * *16_16.csv*: Battery discharge 16 Bit resolution with a prescaler of 16
 
-**16_bit_discharge.csv** is such a file. This can now be inspected with [gnuplot](http://www.gnuplot.info/), or some other plotting software.
+The following graphs are generated with [gnuplot](http://www.gnuplot.info/).
 
-The following image is a one minute time span of the signal, it shows the 10Bit, normal read, and the 16 Bit decimated read with a prescaler of 128:
+![60 seconds @ 125kHz](extras/OversampleTest/16_128-60sec.png)
+> 60 seconds @ 125kHz
 
-![60 seconds](extras/OversampleTest/16_128-60sec.png)
+![60 seconds @ 1MHz](extras/OversampleTest/16_16-60sec.png)
+> 60 seconds @ 1MHz
 
-You can note multiple things in this diagram:
+Those diagrams concolude the following:
 
-* 16 Bit is way smoother than the 10 Bit measurement
+* 16 Bit normalized are way smoother than the 10 Bit measurement
 * The spikes of the 16 Bit measurement are smaller and come slightly after the spikes of the 10 Bit measurements, this is due to the fact, that the measurements happen after one another, and the oversampled one takes longer.
+* A lower prescaler causes bigger variance in single analog reads.
 
 The next graph shows the full spectrum of the measurements, one can see that the 16Bit graph is way smoother.
 
