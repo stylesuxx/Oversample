@@ -73,9 +73,14 @@ This is the value you obtain through a call to read().
 Simply clone this repository to your library folder. This repository also contains an example which should show up in your Arduino IDE.
 
 ```Arduino
-// Oversample * sampler = new Oversample(analogPin, resolution);
-Oversample * sampler = new Oversample(A0, 16);
-double oversampled = sampler->read();
+Oversample * sampler;
+
+void setup() {
+  /* Initialize sampler inside setup, or the prescaler will not be set properly */
+  //sampler = new Oversample(analogPin, resolution);
+  sampler = new Oversample(A0, 16);
+  double oversampled = sampler->read();
+}
 ```
 The library provides getters and setters for resolution and prescaler. Please see the example on how to use them.
 
