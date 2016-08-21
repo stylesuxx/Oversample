@@ -3,7 +3,6 @@
 byte analogPin = A0;
 byte resolution = 16;
 byte interval = 1;
-unsigned long time;
 
 Oversample * sampler;
 
@@ -23,21 +22,15 @@ void setup() {
 }
 
 void loop() {
-  //long scaled = sampler->readDecimated();
-
-  time = micros();
-  double oversampled = sampler->read();
-  time = micros() - time;
-
   int single = analogRead(analogPin);
+  double oversampled = sampler->read();
+  long scaled = sampler->readDecimated();
 
   Serial.print(single);
   Serial.print(", ");
   Serial.print(oversampled, 7);
   Serial.print(", ");
-  Serial.print(scaled);
-  Serial.print(", ");
-  Serial.println(time);
+  Serial.println(scaled);
 
   delay(interval * 1000);
 }
