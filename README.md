@@ -121,6 +121,19 @@ Sampling frequency has to be above [Nyquist frequency](https://en.wikipedia.org/
 
 So the maximum bandwidth you can sample is **500kHz**.
 
+### Trading MCU time for Resolution
+The time needed to collect all the samples for the requested bit rate grows exponentially, the following tables show how long it takes to make all measurements for the requested resolution, with a prescaler of **16**, the ADC operates with 1MHz,
+so **1 sample takes 1us**.
+
+| Bit | Samples | Time   |
+|:----|:--------|:-------|
+| 11  | 4       | 4us    |
+| 12  | 16      | 16us   |
+| 13  | 64      | 64us   |
+| 14  | 256     | 256us  |
+| 15  | 1024    | 1.024ms|
+| 16  | 4096    | 4.096ms|
+
 ## References
  * [Oversampling - Note AVR121](http://www.atmel.com/images/doc8003.pdf)
  * [Calibration of the ADC - Note120 ](https://www.element14.com/community/docs/DOC-30916/l/atmel-avr120-application-note-for-characterization-and-calibration-of-the-adc-on-an-avr)
