@@ -58,14 +58,13 @@ class Oversample
     byte getPrescaler();
 
   private:
-    byte _pin = 0;
-    byte _prescaler = 4;
-    byte _resolution = 10;
-    byte _baseResolution = 10;
-    byte _maxResolution = 16;
-    byte _additionalBits = 0;
-    int _sampleCount = 0;
-    int * _samples = 0;
+    byte _pin;
+    byte _prescaler;
+    byte _resolution;
+    byte _baseResolution;
+    byte _maxResolution;
+    byte _additionalBits;
+    int _sampleCount;
 
     byte sanitizeResolution(byte resolution);
 };

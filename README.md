@@ -63,7 +63,7 @@ The result is now **scaled by shifting** it to the right by **n** bits, since we
 
     0011
 
-The value is now divided by **2^n** to get the proportional value of the decimated value:
+The value is now divided by **2^n** to get the normalized value of the decimated value:
 
      3/2^1 = 1.5
 
@@ -73,9 +73,14 @@ This is the value you obtain through a call to read().
 Simply clone this repository to your library folder. This repository also contains an example which should show up in your Arduino IDE.
 
 ```Arduino
-// Oversample * sampler = new Oversample(analogPin, resolution);
-Oversample * sampler = new Oversample(A0, 16);
-double oversampled = sampler->read();
+Oversample * sampler;
+
+void setup() {
+  /* Initialize sampler inside setup, or the prescaler will not be set properly */
+  //sampler = new Oversample(analogPin, resolution);
+  sampler = new Oversample(A0, 16);
+  double oversampled = sampler->read();
+}
 ```
 The library provides getters and setters for resolution and prescaler. Please see the example on how to use them.
 
@@ -86,26 +91,68 @@ In the mean time I cam up with the following test setup to at least see how it c
 
 I built a simple circuit with a coin cell and two LED's discharging it. Then I run my example program, attaching plus of the battery to A0 and minus to GND.
 
-The test program does one *normal* analog read, then it does the oversampled read. The normal, proportinal oversampled and decimated value are printed to Serial.
+The test program does one *normal* analog read, then it does the oversampled read. The normal, normalized oversampled and oversampled value are printed to Serial.
 
 This measurement is done every second and is captured to a file.
 
-**16_bit_discharge.csv** is such a file. This can now be inspected with [gnuplot](http://www.gnuplot.info/), or some other plotting software.
+In the extras directory you can find multiple such files:
+* *16_128.csv*: Battery discharge 16 Bit resolution with a prescaler of 128
+* *16_16.csv*: Battery discharge 16 Bit resolution with a prescaler of 16
 
-The following image is a one minute time span of the signal, it shows the 10Bit, normal read, and the 16 Bit decimated read:
+The following graphs are generated with [gnuplot](http://www.gnuplot.info/).
 
-![60 seconds](examples/OversampleTest/60sec.png)
+![60 seconds @ 125kHz](extras/OversampleTest/16_128-60sec.png)
+> 60 seconds @ 125kHz, internal reference
 
-You can note multiple things in this diagram:
+![60 seconds @ 1MHz](extras/OversampleTest/16_16-60sec.png)
+> 60 seconds @ 1MHz, internal reference
 
-* 16 Bit is way smoother than the 10 Bit measurement
+Those diagrams concolude the following:
+
+* The 16 Bit oversampled measurement is way smoother than the 10 Bit measurement.
 * The spikes of the 16 Bit measurement are smaller and come slightly after the spikes of the 10 Bit measurements, this is due to the fact, that the measurements happen after one another, and the oversampled one takes longer.
+* A lower prescaler causes bigger variance in analog reads.
 
-The next graph shows the full spectrum of the measurements, one can see that the 16Bit graph is way smoother.
+The next graphs shows the full spectrum of the measurements, one can see that the 16Bit graph is way smoother.
 
-![Full](examples/OversampleTest/full.png)
+![Full](extras/OversampleTest/16_128-full.png)
+> about 12hrs @ 125kHz, internal reference
+
+![Full](extras/OversampleTest/16_16-full.png)
+> about 30mins @ 1Mhz, internal reference
 
 So I would consider oversampling a full success, although I would really like to see test results with native 12Bit, and 16Bit ADC's, maybe a test setup using one Arduino per ADC, Another one to sync the measurements and collect the data.
+
+## Limitations
+There are multiple limitations one needs to obey:
+
+### Sampling frequency
+The ADC's sampling frequency limits the bandwidth in which the method will work.
+Sampling frequency has to be above [Nyquist frequency](https://en.wikipedia.org/wiki/Nyquist_frequency), this concludes the maximum bandwidth (with an ADC prescaler of 16 - which this library defaults to, and an Arduino clock of 16MHz):
+
+> **f***sample* = 2 * **f***bandwidth*  
+> 1MHz = 2 * **f***bandwidth*  
+> **f***bandwidth* = 1MHz / 2  
+> **f***bandwidth* = 500kHz  
+
+So the maximum bandwidth you can sample is **500kHz**.
+
+### Trading MCU time for Resolution
+The time needed to collect all the samples for the requested bit rate grows exponentially, the following tables show how long it takes to make all measurements for the requested resolution, with a prescaler of **16**. the ADC operates with 1MHz, and needs 25 cycles for the first sample (after activation - which we will ignore for this table) and 13 for every one after that:
+
+One ADC measurement with a Clock of 1MHz takes:
+
+> **T***one* = (1 / 16MHz) * 16 * 13 = 13us  
+> **T***all* = (1 / 16Mhz) * 16 * 4^n * 13  
+
+| Bit | n  | Samples | Time     |
+|:----|:---|:--------|:---------|
+| 11  | 1  | 4       | 52us     |
+| 12  | 2  | 16      | 208us    |
+| 13  | 3  | 64      | 832us    |
+| 14  | 4  | 256     | 256us    |
+| 15  | 5  | 1024    | 3.328ms  |
+| 16  | 6  | 4096    | 53.248ms |
 
 ## References
  * [Oversampling - Note AVR121](http://www.atmel.com/images/doc8003.pdf)
