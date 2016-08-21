@@ -1,7 +1,7 @@
 #include <Oversample.h>
 
 byte analogPin = A0;
-byte resolution = 11;
+byte resolution = 16;
 byte interval = 1;
 unsigned long time;
 
