@@ -107,11 +107,11 @@ The following graphs are generated with [gnuplot](http://www.gnuplot.info/).
 ![60 seconds @ 1MHz](extras/OversampleTest/16_16-60sec.png)
 > 60 seconds @ 1MHz, internal reference
 
-Those diagrams concolude the following:
+Those diagrams conclude the following:
 
 * The 16 Bit oversampled measurement is way smoother than the 10 Bit measurement.
 * The spikes of the 16 Bit measurement are smaller and come slightly after the spikes of the 10 Bit measurements, this is due to the fact, that the measurements happen after one another, and the oversampled one takes longer.
-* A lower prescaler causes bigger variance in analog reads.
+* A lower prescaler seems to causes bigger variance in analog reads.
 
 The next graphs show 30, and 60 minutes of the measurements.
 
