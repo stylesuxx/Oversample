@@ -107,6 +107,20 @@ The next graph shows the full spectrum of the measurements, one can see that the
 
 So I would consider oversampling a full success, although I would really like to see test results with native 12Bit, and 16Bit ADC's, maybe a test setup using one Arduino per ADC, Another one to sync the measurements and collect the data.
 
+## Limitations
+There are multiple limitations one needs to obey:
+
+### Sampling frequency
+The ADC's sampling frequency limits the bandwidth in which the method will work.
+Sampling frequency has to be above [Nyquist frequency](https://en.wikipedia.org/wiki/Nyquist_frequency), this concludes the maximum bandwidth (with an ADC prescaler of 16 - which this library defaults to, and an Arduino clock of 16MHz):
+
+> **f***sample* = 2 * **f***bandwidth*
+> 1MHz = 2 * **f***bandwidth*
+> **f***bandwidth* = 1MHz / 2
+> **f***bandwidth* = 500kHz
+
+So the maximum bandwidth you can sample is **500kHz**.
+
 ## References
  * [Oversampling - Note AVR121](http://www.atmel.com/images/doc8003.pdf)
  * [Calibration of the ADC - Note120 ](https://www.element14.com/community/docs/DOC-30916/l/atmel-avr120-application-note-for-characterization-and-calibration-of-the-adc-on-an-avr)
