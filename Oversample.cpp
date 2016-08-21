@@ -3,6 +3,12 @@
 Oversample::Oversample(byte pin, byte resolution)
 {
   _pin = pin;
+  _prescaler = 4;
+  _resolution = 10;
+  _baseResolution = 10;
+  _maxResolution = 16;
+  _additionalBits = 0;
+  _sampleCount = 0;
 
   pinMode(_pin, INPUT);
   setPrescaler(_prescaler);
