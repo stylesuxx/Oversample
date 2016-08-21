@@ -17,18 +17,19 @@ void setup() {
   Serial.println(resolution);
 
   byte prescaler = sampler->getPrescaler();
-  //sampler->setPrescaler(4);
+  //sampler->setPrescaler(7);
   Serial.print("Prescaler: ");
   Serial.println(resolution);
 }
 
 void loop() {
-  time = micros();
-  int single = analogRead(analogPin);
-  time = micros() - time;
-  double oversampled = sampler->read();
+  //long scaled = sampler->readDecimated();
 
-  long scaled = sampler->readDecimated();
+  time = micros();
+  double oversampled = sampler->read();
+  time = micros() - time;
+
+  int single = analogRead(analogPin);
 
   Serial.print(single);
   Serial.print(", ");
