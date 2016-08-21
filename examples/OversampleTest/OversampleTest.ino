@@ -1,13 +1,15 @@
 #include <Oversample.h>
 
 byte analogPin = A0;
-byte resolution = 16;
+byte resolution = 11;
 byte interval = 1;
+unsigned long time;
 
-Oversample * sampler = new Oversample(analogPin, resolution);
+Oversample * sampler;
 
 void setup() {
   Serial.begin(115200);
+  sampler = new Oversample(analogPin, resolution);
 
   byte resolution = sampler->getResolution();
   //sampler->setResolution(16);
@@ -21,13 +23,20 @@ void setup() {
 }
 
 void loop() {
-  double oversampled = sampler->read();
-  long scaled = sampler->readDecimated();
+  time = micros();
   int single = analogRead(analogPin);
+  time = micros() - time;
+  double oversampled = sampler->read();
+
+  long scaled = sampler->readDecimated();
 
   Serial.print(single);
   Serial.print(", ");
   Serial.print(oversampled, 7);
   Serial.print(", ");
-  Serial.println(scaled);
+  Serial.print(scaled);
+  Serial.print(", ");
+  Serial.println(time);
+
+  delay(interval * 1000);
 }
