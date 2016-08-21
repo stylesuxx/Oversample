@@ -91,15 +91,19 @@ In the mean time I cam up with the following test setup to at least see how it c
 
 I built a simple circuit with a coin cell and two LED's discharging it. Then I run my example program, attaching plus of the battery to A0 and minus to GND.
 
-The test program does one *normal* analog read, then it does the oversampled read. The normal, proportinal oversampled and decimated value are printed to Serial.
+The test program does one *normal* analog read, then it does the oversampled read. The normal, normalized oversampled and oversampled value are printed to Serial.
 
 This measurement is done every second and is captured to a file.
 
+In the extras directory you can find multiple such files:
+* *16_128.csv*: Battery discharge 16 Bit resolution with a prescaler of 128
+* *16_16.csv*: Battery discharge 16 Bit resolution with a prescaler of 16
+
 **16_bit_discharge.csv** is such a file. This can now be inspected with [gnuplot](http://www.gnuplot.info/), or some other plotting software.
 
-The following image is a one minute time span of the signal, it shows the 10Bit, normal read, and the 16 Bit decimated read:
+The following image is a one minute time span of the signal, it shows the 10Bit, normal read, and the 16 Bit decimated read with a prescaler of 128:
 
-![60 seconds](extras/OversampleTest/60sec.png)
+![60 seconds](extras/OversampleTest/16_128-60sec.png)
 
 You can note multiple things in this diagram:
 
@@ -108,7 +112,7 @@ You can note multiple things in this diagram:
 
 The next graph shows the full spectrum of the measurements, one can see that the 16Bit graph is way smoother.
 
-![Full](extras/OversampleTest/full.png)
+![Full](extras/OversampleTest/16_128-full.png)
 
 So I would consider oversampling a full success, although I would really like to see test results with native 12Bit, and 16Bit ADC's, maybe a test setup using one Arduino per ADC, Another one to sync the measurements and collect the data.
 
