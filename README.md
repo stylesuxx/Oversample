@@ -107,19 +107,25 @@ The following graphs are generated with [gnuplot](http://www.gnuplot.info/).
 ![60 seconds @ 1MHz](extras/OversampleTest/16_16-60sec.png)
 > 60 seconds @ 1MHz, internal reference
 
-Those diagrams concolude the following:
+Those diagrams conclude the following:
 
 * The 16 Bit oversampled measurement is way smoother than the 10 Bit measurement.
 * The spikes of the 16 Bit measurement are smaller and come slightly after the spikes of the 10 Bit measurements, this is due to the fact, that the measurements happen after one another, and the oversampled one takes longer.
-* A lower prescaler causes bigger variance in analog reads.
+* A lower prescaler seems to causes bigger variance in analog reads.
 
-The next graphs shows the full spectrum of the measurements, one can see that the 16Bit graph is way smoother.
+The next graphs show 30, and 60 minutes of the measurements.
 
-![Full](extras/OversampleTest/16_128-full.png)
-> about 12hrs @ 125kHz, internal reference
+![30min @ 125kHz, internal reference](extras/OversampleTest/16_128-30min.png)
+> 30min @ 125kHz, internal reference
 
-![Full](extras/OversampleTest/16_16-full.png)
-> about 30mins @ 1Mhz, internal reference
+![30min @ 1Mhz, internal reference](extras/OversampleTest/16_16-30min.png)
+> 30min @ 1Mhz, internal reference
+
+![60min @ 125kHz, internal reference](extras/OversampleTest/16_128-60min.png)
+> 60min @ 125kHz, internal reference
+
+![60min @ 1Mhz, internal reference](extras/OversampleTest/16_16-60min.png)
+> 60min @ 1Mhz, internal reference
 
 So I would consider oversampling a full success, although I would really like to see test results with native 12Bit, and 16Bit ADC's, maybe a test setup using one Arduino per ADC, Another one to sync the measurements and collect the data.
 
@@ -150,8 +156,8 @@ One ADC measurement with a Clock of 1MHz takes:
 | 11  | 1  | 4       | 52us     |
 | 12  | 2  | 16      | 208us    |
 | 13  | 3  | 64      | 832us    |
-| 14  | 4  | 256     | 256us    |
-| 15  | 5  | 1024    | 3.328ms  |
+| 14  | 4  | 256     | 3.328ms  |
+| 15  | 5  | 1024    | 13.312ms |
 | 16  | 6  | 4096    | 53.248ms |
 
 ## References
