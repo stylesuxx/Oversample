@@ -150,8 +150,8 @@ One ADC measurement with a Clock of 1MHz takes:
 | 11  | 1  | 4       | 52us     |
 | 12  | 2  | 16      | 208us    |
 | 13  | 3  | 64      | 832us    |
-| 14  | 4  | 256     | 256us    |
-| 15  | 5  | 1024    | 3.328ms  |
+| 14  | 4  | 256     | 3.328ms  |
+| 15  | 5  | 1024    | 13.312ms |
 | 16  | 6  | 4096    | 53.248ms |
 
 ## References
