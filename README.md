@@ -114,10 +114,10 @@ There are multiple limitations one needs to obey:
 The ADC's sampling frequency limits the bandwidth in which the method will work.
 Sampling frequency has to be above [Nyquist frequency](https://en.wikipedia.org/wiki/Nyquist_frequency), this concludes the maximum bandwidth (with an ADC prescaler of 16 - which this library defaults to, and an Arduino clock of 16MHz):
 
-> **f***sample* = 2 * **f***bandwidth*
-> 1MHz = 2 * **f***bandwidth*
-> **f***bandwidth* = 1MHz / 2
-> **f***bandwidth* = 500kHz
+> **f***sample* = 2 * **f***bandwidth*  
+> 1MHz = 2 * **f***bandwidth*  
+> **f***bandwidth* = 1MHz / 2  
+> **f***bandwidth* = 500kHz  
 
 So the maximum bandwidth you can sample is **500kHz**.
 
@@ -125,8 +125,9 @@ So the maximum bandwidth you can sample is **500kHz**.
 The time needed to collect all the samples for the requested bit rate grows exponentially, the following tables show how long it takes to make all measurements for the requested resolution, with a prescaler of **16**. the ADC operates with 1MHz, and needs 25 cycles for the first sample (after activation - which we will ignore for this table) and 13 for every one after that:
 
 One ADC measurement with a Clock of 1MHz takes:
-> **T***one* = (1 / 16MHz) * 16 * 13 = 13us
-> **T***all* = (1 / 16Mhz) * 16 * 4^n * 13
+
+> **T***one* = (1 / 16MHz) * 16 * 13 = 13us  
+> **T***all* = (1 / 16Mhz) * 16 * 4^n * 13  
 
 | Bit | n  | Samples | Time     |
 |:----|:---|:--------|:---------|
