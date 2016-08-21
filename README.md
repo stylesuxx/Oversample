@@ -115,8 +115,11 @@ Those diagrams concolude the following:
 
 The next graphs shows the full spectrum of the measurements, one can see that the 16Bit graph is way smoother.
 
-![Full](extras/OversampleTest/16_128-full.png)
-> about 12hrs @ 125kHz, internal reference
+![30min @ 125kHz, internal reference](extras/OversampleTest/16_128-30min.png)
+> 30min @ 125kHz, internal reference
+
+![60min @ 125kHz, internal reference](extras/OversampleTest/16_128-60min.png)
+> 60min @ 125kHz, internal reference
 
 ![Full](extras/OversampleTest/16_16-full.png)
 > about 30mins @ 1Mhz, internal reference
