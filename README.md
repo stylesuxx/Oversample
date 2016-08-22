@@ -84,8 +84,8 @@ void setup() {
 ```
 The library provides getters and setters for resolution and prescaler. Please see the example on how to use them.
 
-## Does it work?
-The first time I heard about it, it sounded a bit like magic, so I thought the only way for sure is to try it and compare. I would like to compare it to a **real** 12 and 16 Bit ADC, unfortunately I do not have any on hand at the moment and will aquire them with my next electronics order to provide proper comparison.
+## How does it compare?
+The first time I heard about it, it sounded a bit like magic, so I thought the only way for sure is to try it and compare. I would like to compare it to a **real** 12 and 16 Bit ADC, unfortunately I do not have any on hand at the moment and will acquire them with my next electronics order to provide proper comparison.
 
 In the mean time I cam up with the following test setup to at least see how it compares to regular analog reads.
 
@@ -112,7 +112,7 @@ The following graphs are generated with [gnuplot](http://www.gnuplot.info/).
 So I would consider oversampling a full success, although I would really like to see test results with native 12Bit, and 16Bit ADC's, maybe a test setup using one Arduino per ADC, Another one to sync the measurements and collect the data.
 
 ## Limitations
-There are multiple limitations one needs to obey:
+There are multiple limitations one needs to consider, lets look at them briefly.
 
 ### Sampling frequency
 The ADC's sampling frequency limits the bandwidth in which the method will work.
