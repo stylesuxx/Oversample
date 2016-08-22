@@ -84,8 +84,8 @@ void setup() {
 ```
 The library provides getters and setters for resolution and prescaler. Please see the example on how to use them.
 
-## Does it work?
-The first time I heard about it, it sounded a bit like magic, so I thought the only way for sure is to try it and compare. I would like to compare it to a **real** 12 and 16 Bit ADC, unfortunately I do not have any on hand at the moment and will aquire them with my next electronics order to provide proper comparison.
+## How does it compare?
+The first time I heard about it, it sounded a bit like magic, so I thought the only way for sure is to try it and compare. I would like to compare it to a **real** 12 and 16 Bit ADC, unfortunately I do not have any on hand at the moment and will acquire them with my next electronics order to provide proper comparison.
 
 In the mean time I cam up with the following test setup to at least see how it compares to regular analog reads.
 
@@ -95,34 +95,16 @@ The test program does one *normal* analog read, then it does the oversampled rea
 
 This measurement is done every second and is captured to a file.
 
-In the extras directory you can find multiple such files:
-* *16_128.csv*: Battery discharge 16 Bit resolution with a prescaler of 128
+In the extras directory you can find an example file:
 * *16_16.csv*: Battery discharge 16 Bit resolution with a prescaler of 16
 
 The following graphs are generated with [gnuplot](http://www.gnuplot.info/).
 
-![60 seconds @ 125kHz](extras/OversampleTest/16_128-60sec.png)
-> 60 seconds @ 125kHz, internal reference
-
 ![60 seconds @ 1MHz](extras/OversampleTest/16_16-60sec.png)
 > 60 seconds @ 1MHz, internal reference
 
-Those diagrams conclude the following:
-
-* The 16 Bit oversampled measurement is way smoother than the 10 Bit measurement.
-* The spikes of the 16 Bit measurement are smaller and come slightly after the spikes of the 10 Bit measurements, this is due to the fact, that the measurements happen after one another, and the oversampled one takes longer.
-* A lower prescaler seems to causes bigger variance in analog reads.
-
-The next graphs show 30, and 60 minutes of the measurements.
-
-![30min @ 125kHz, internal reference](extras/OversampleTest/16_128-30min.png)
-> 30min @ 125kHz, internal reference
-
 ![30min @ 1Mhz, internal reference](extras/OversampleTest/16_16-30min.png)
 > 30min @ 1Mhz, internal reference
-
-![60min @ 125kHz, internal reference](extras/OversampleTest/16_128-60min.png)
-> 60min @ 125kHz, internal reference
 
 ![60min @ 1Mhz, internal reference](extras/OversampleTest/16_16-60min.png)
 > 60min @ 1Mhz, internal reference
@@ -130,7 +112,7 @@ The next graphs show 30, and 60 minutes of the measurements.
 So I would consider oversampling a full success, although I would really like to see test results with native 12Bit, and 16Bit ADC's, maybe a test setup using one Arduino per ADC, Another one to sync the measurements and collect the data.
 
 ## Limitations
-There are multiple limitations one needs to obey:
+There are multiple limitations one needs to consider, lets look at them briefly.
 
 ### Sampling frequency
 The ADC's sampling frequency limits the bandwidth in which the method will work.
