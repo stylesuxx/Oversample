@@ -48,9 +48,8 @@ byte Oversample::getResolution()
 
 void Oversample::setPrescaler(byte prescaler)
 {
-  _prescaler = prescaler;
-  byte mask = B11111000;
-  ADCSRA &= mask;
+  _prescaler = prescaler & B00000111;
+  ADCSRA &= B11111000;
   ADCSRA |= _prescaler;
 }
 
