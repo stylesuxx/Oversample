@@ -59,7 +59,6 @@ class Oversample
 
   private:
     byte _pin;
-    byte _prescaler;
     byte _resolution;
     byte _baseResolution;
     byte _maxResolution;

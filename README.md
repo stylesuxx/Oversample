@@ -176,3 +176,4 @@ One ADC measurement with a Clock of 1MHz takes:
  * [Oversampling - Note AVR121](http://www.atmel.com/images/doc8003.pdf)
  * [Calibration of the ADC - Note120 ](https://www.element14.com/community/docs/DOC-30916/l/atmel-avr120-application-note-for-characterization-and-calibration-of-the-adc-on-an-avr)
  * [ATmega Datasheet](http://www.atmel.com/images/Atmel-8271-8-bit-AVR-Microcontroller-ATmega48A-48PA-88A-88PA-168A-168PA-328-328P_datasheet_Complete.pdf)
+ * [forum.arduino.cc discussion about this library](https://forum.arduino.cc/index.php?topic=419554.0)

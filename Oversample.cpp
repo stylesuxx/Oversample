@@ -3,7 +3,6 @@
 Oversample::Oversample(byte pin, byte resolution)
 {
   _pin = pin;
-  _prescaler = 4;
   _resolution = 10;
   _baseResolution = 10;
   _maxResolution = 16;
@@ -11,8 +10,8 @@ Oversample::Oversample(byte pin, byte resolution)
   _sampleCount = 0;
 
   pinMode(_pin, INPUT);
-  setPrescaler(_prescaler);
   setResolution(resolution);
+  setPrescaler(4);
 }
 
 double Oversample::read()
@@ -48,14 +47,14 @@ byte Oversample::getResolution()
 
 void Oversample::setPrescaler(byte prescaler)
 {
-  _prescaler = prescaler & B00000111;
+  prescaler &= B00000111;
   ADCSRA &= B11111000;
-  ADCSRA |= _prescaler;
+  ADCSRA |= prescaler;
 }
 
 byte Oversample::getPrescaler()
 {
-  return _prescaler;
+  return (ADCSRA & B00000111);
 }
 
 byte Oversample::sanitizeResolution(byte resolution)
