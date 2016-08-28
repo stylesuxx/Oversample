@@ -109,7 +109,37 @@ The following graphs are generated with [gnuplot](http://www.gnuplot.info/).
 ![60min @ 1Mhz, internal reference](extras/OversampleTest/16_16-60min.png)
 > 60min @ 1Mhz, internal reference
 
-So I would consider oversampling a full success, although I would really like to see test results with native 12Bit, and 16Bit ADC's, maybe a test setup using one Arduino per ADC, Another one to sync the measurements and collect the data.
+### Comparing to real 12 Bit converter
+In the examples you can find a **12BitComparison** sketch. The example utilizes a **MCP3201 12 Bit ADC**. First the signal is measured with 12 Bit oversampling, then with the real 12 Bit ADC.
+
+I wanted to compare the offset from each measurement and thought that:
+ * it should not differ too much at any point
+ * the distribution of the offset should be Gaussian with the peak being at 0
+
+In the extras folder you can find **error.csv**. This file shows the offset relative to the external 12 Bit ADC. it contains data from **2682** measurements. There is a handfull of really off measurements, I credit that to me moving the breadboard.
+
+![Offset distribution relative to 12Bit ADC](extras/TwelveBitComparison/offsets.png)
+> Offset distribution relative to 12Bit ADC
+
+From this graph we can see, that both points mentioned above are true to some extend, the offset is not too much:
+
+**2046** measurements lie within 2 Bit (4 steps offset), meaning **76.2%**.
+**1224** measurements lie within 1 Bit (2 steps offset), meaning **45.6%**.
+
+I consider this comparison a full success. Instead of using a 12 Bit external ADC I would recommend using oversampling to 12 Bit if applicable.
+
+Interestingly the highest overlap is not at zero, as I would have suspected,
+
+Furhter testing could consider of 16 Bit ADC, maybe a test setup using one Arduino per ADC, Another one to sync the measurements and collect the data.
+
+![60sec @ 1Mhz, internal reference](extras/TwelveBitComparison/60sec.png)
+> 60sec @ 1Mhz, internal reference
+
+![30min @ 1Mhz, internal reference](extras/TwelveBitComparison/30min.png)
+> 30min @ 1Mhz, internal reference
+
+![~45min @ 1Mhz, internal reference](extras/TwelveBitComparison/45min.png)
+> ~45min @ 1Mhz, internal reference
 
 ## Limitations
 There are multiple limitations one needs to consider, lets look at them briefly.
