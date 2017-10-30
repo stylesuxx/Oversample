@@ -18,7 +18,7 @@ void setup() {
   byte prescaler = sampler->getPrescaler();
   //sampler->setPrescaler(7);
   Serial.print("Prescaler: ");
-  Serial.println(resolution);
+  Serial.println(prescaler);
 }
 
 void loop() {
